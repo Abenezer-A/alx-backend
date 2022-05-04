@@ -35,5 +35,13 @@ class MRUCache(BaseCaching):
             if key in self.cache_data:
                 self._remove(key)
             self._add(key, item)
-
+     def get(self, key):
+        """ Return the value linked """
+        if key is None or self.cache_data.get(key) is None:
+            return None
+        if key in self.cache_data:
+            value = self.cache_data[key]
+            self._remove(key)
+            self._add(key, value)
+            return value
    
